@@ -7,7 +7,8 @@ if(isset($_GET["controller"])){
     $controllerObj = loadController($_GET["controller"]);
     loadAction($controllerObj);
 }else{
-    $controllerobj = loadController(CONTROLLER_DEFAULT);
+    $controllerObj = loadController(CONTROLLER_DEFAULT);
+    loadAction($controllerObj);
 }
 
 function loadController($controller){
@@ -15,23 +16,23 @@ function loadController($controller){
         case 'articles' :
             $strFileController = 'Controllers/articlesController.php';
             require_once $strFileController;
-            $controllerobj = new ArticlesController();
+            $controllerObj = new ArticlesController();
         break;
         
         default :
             $strFileController = 'Controllers/articlesController.php';
             require_once $strFileController;
-            $controllerobj = new ArticlesController();
+            $controllerObj = new ArticlesController();
         break;
     }
-    return $controllerobj;
+    return $controllerObj;
 }
 
-function loadAction($controllerobj){
+function loadAction($controllerObj){
     if(isset($_GET["action"])){
-        $controllerobj->run($_GET["action"]);
+        $controllerObj->run($_GET["action"]);
     }else{
-        $controllerobj->run(ACTION_DEFAULT);
+        $controllerObj->run(ACTION_DEFAULT);
     }
 }
 

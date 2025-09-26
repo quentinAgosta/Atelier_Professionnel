@@ -9,7 +9,7 @@ Class Connecteur{
     // Définition du construteur pour l'init des attributs
 
     public function __construct(){
-        $db_cfg = require_once '../Config/database.php';
+        $db_cfg = require_once 'Config/database.php';
 
         $this->driver = DB_DRIVER;
         $this->host = DB_HOST;
@@ -20,11 +20,11 @@ Class Connecteur{
     }
 
     public function connexion(){
-        $bdd = $this->driver.'.host='.$this->host.';dbname='.$this->database.';charset='.$this->charset;
+        $bdd = $this->driver.':host='.$this->host.';dbname='.$this->database.';charset='.$this->charset;
 
         try{
-            $connexion=new PDO($BDD, $this->user, $this->pass);
-            $connexion->setAtribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $connexion=new PDO($bdd, $this->user, $this->pass);
+            $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $connexion;
         }catch(PDOExcetion $e){
             throw new Exception('Problème de connexion à la base de donnée. Merci de prévenir votre 

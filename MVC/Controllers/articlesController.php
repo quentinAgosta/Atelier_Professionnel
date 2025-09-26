@@ -1,32 +1,37 @@
 <?php
 
-    class ArticlesController{
-        private $connecteur;
-        private $connexion;
+class ArticlesController{
+    private $connecteur;
+    private $connexion;
 
-        public function __construct(){
-            require_once __DIR__ ."/../Core/connecteur.php";
-            require_once __DIR__ ."/../Models/article.php";
-        }
+    public function __construct(){
+        require_once __DIR__ ."/../Core/connecteur.php";
+        require_once __DIR__ ."/../Models/article.php";
 
-        public function run($action){
-            switch ($action){
-                case "index" :
-                    $this->index();
-                    break;
-                case "creer" :
-                    $this->creer();
-                    break;
-                case "maj" :
-                    $this->maj();
-                    break;
-                case "delete" :
-                    $this->delete();
-                    break;
-                default :
-                    $this->index();
-                    break;
-            }
+        $this->connecteur = new Connecteur();
+        $this->connexion=$this->connecteur->connexion();
+    }
+
+    public function run($action){
+        switch ($action){
+            case "index" :
+                $this->index();
+                break;
+            case "detail" :
+                $this->detail();
+                break;
+            case "creer" :
+                $this->creer();
+                break;
+            case "maj" :
+                $this->maj();
+                break;
+            case "supprimer" :
+                $this->supprimer();
+                break;
+            default :
+                $this->index();
+                break;
         }
     }
 
@@ -35,11 +40,11 @@
         $listeArticles = $Article->getAll();
         $this->view("index", array("article"=>$listeArticles,"titre" => "PHP MVC EXEMPLE"));
     }
-    
+
     function detail(){
         $Article = new Article($this->connexion);
         $unArticle = $Article->getById($_GET["id"]);
-        $this->view("detail", array("article"=>$unArticles,"titre" => "DETAIL ARTICLE"));
+        $this->view("detail", array("article"=>$unArticle,"titre" => "DETAIL ARTICLE"));
     }
 
     function creer(){
@@ -51,7 +56,7 @@
             header('Location: index.php');
         }
     }
-    
+
     function maj(){
         $Article = new Article($this->connexion);
         $Article->setArt_id($_POST["id"]);
@@ -63,8 +68,18 @@
         }
     }
 
-    function view($name, $data){
-        require_once __DIR__."/../Views".$name."View.php";
+    function supprimer(){
+        $Article = new Article($this->connexion);
+        $Article->setArt_id($_POST["id"]);
+        if($Article->delete()){
+            header('Location: index.php');
+        }
     }
+
+
+    function view($name, $data){
+        require_once __DIR__."/../Views/".$name."View.php";
+    }
+}
 
 ?>

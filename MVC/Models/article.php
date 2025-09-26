@@ -56,14 +56,14 @@ class Article{
     public function getById($id){
         $query = $this->connexion->prepare("SELECT art_id, art_nom, art_prix, art_poids FROM ".$this->table.
         " WHERE art_id = :id");
-        $query->execute(array("id"=>"id"));
+        $query->execute(array("id"=>$id));
         $result = $query->fetchObject();
         $this->connexion = null;
         return $result;
     }
 
     public function insert(){
-        $query = $this->connexion->prepare("SELECT INTO ".$this->table." (art_nom, art_prix, art_poids) 
+        $query = $this->connexion->prepare("INSERT INTO ".$this->table." (art_nom, art_prix, art_poids) 
         VALUES (:nom, :prix, :poids)");
 
         $result = $query->execute(array(
@@ -84,6 +84,16 @@ class Article{
             "nom" => $this->art_nom,
             "prix" => $this->art_prix,
             "poids" => $this->art_poids
+        ));
+        $this->connexion = null;
+        return $result;
+    }
+
+    public function delete(){
+        $query = $this->connexion->prepare("DELETE FROM ".$this->table." WHERE ".$this->table.".art_id = :id");
+
+        $result = $query->execute(array(
+            "id" => $this->art_id
         ));
         $this->connexion = null;
         return $result;
