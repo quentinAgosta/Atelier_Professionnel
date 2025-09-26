@@ -30,7 +30,7 @@
         </form>
         <form method="POST" action="index.php?controller=articles&action=supprimer" style="display:inline;">
             <input type="hidden" name="id" value="<?php echo $data["article"]->art_id; ?>" />
-            <button type="submit"class="btn btn-info"> Supprimer </button>
+            <button type="submit"class="btn btn-danger"> Supprimer </button>
         </form>
     </div>
 </body>

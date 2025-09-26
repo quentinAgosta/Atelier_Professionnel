@@ -44,7 +44,7 @@
                     </a>
                     <form method="POST" action="index.php?controller=articles&action=supprimer" style="display:inline;">
                         <input type="hidden" name="id" value="<?php echo $article['art_id']; ?>">
-                        <button type="submit" class="btn btn-info">supprimer</button>
+                        <button type="submit" style="" class="btn btn-danger">supprimer</button>
                     </form>
                 </div>
                 <hr/>
