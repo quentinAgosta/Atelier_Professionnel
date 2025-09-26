@@ -49,9 +49,9 @@ class LivresController{
 
     function creer(){
         $Livre = new Livres($this->connexion);
-        $Livre->setNom_livre($_POST["nom"]);
-        $Livre->setNombre_pages($_POST["pages"]);
-        $Livre->setNom_auteur($_POST["auteur"]);
+        $Livre->setNom_livre($_POST["nom_livre"]);
+        $Livre->setNombre_pages($_POST["nombre_pages"]);
+        $Livre->setNom_auteur($_POST["nom_auteur"]);
         if($Livre->insert()){
             header('Location: index.php');
         }

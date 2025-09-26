@@ -38,11 +38,11 @@
                 <?php echo $livre["nombre_pages"]; ?> - 
                 <?php echo $livre["nom_auteur"]; ?> - 
                 <div class="right">
-                    <a href="" 
+                    <a href="index.php?controller=livres&action=detail&id=<?php echo $livre['id_livre']; ?>" 
                     class="btn btn-info">
                         Detail
                     </a>
-                    <form method="POST" action="" style="display:inline;">
+                    <form method="POST" action="index.php?controller=livres&action=supprimer" style="display:inline;">
                         <input type="hidden" name="id" value="<?php echo $livre['id_livre']; ?>">
                         <button type="submit" style="" class="btn btn-danger">Supprimer</button>
                     </form>

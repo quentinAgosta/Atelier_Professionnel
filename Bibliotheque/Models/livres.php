@@ -77,8 +77,8 @@ class Livres{
     }
 
     public function update(){
-        $query = $this->connexion->prepare("UPDATE ".$this->table." SET nom_livre= :nom, nombre_pages= :pages, 
-        nom_auteur =:auteur WHERE il_livre =: id");
+        $query = $this->connexion->prepare("UPDATE ".$this->table." SET nom_livre =:nom, nombre_pages =:pages, 
+        nom_auteur =:auteur WHERE id_livre =:id");
 
         $result = $query->execute(array(
             "id" => $this->id_livre,
