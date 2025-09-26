@@ -28,9 +28,9 @@
             Poids: <input type="text" name="poids" value="<?php echo $data["article"]->art_poids ?>" class="form-control" />
             <input type="submit" value="Modifier" class="btn btn-info"/>
         </form>
-        <form action="index.php?controller=articles&action=delete" method="post">
-            <input type="hidden" id="idDel" name="idDel" value="<?php echo $data["article"]->art_id ?>" />
-            <input type="submit" value="Supprimer" class="btn btn-danger"/>
+        <form method="POST" action="index.php?controller=articles&action=supprimer" style="display:inline;">
+            <input type="hidden" name="id" value="<?php echo $data["article"]->art_id; ?>" />
+            <button type="submit"class="btn btn-info"> Supprimer </button>
         </form>
     </div>
 </body>
