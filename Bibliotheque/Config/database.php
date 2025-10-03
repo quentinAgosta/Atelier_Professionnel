@@ -3,6 +3,6 @@
     define("DB_HOST", "localhost");
     define("DB_USER", "root");
     define("DB_PASS", "");
-    define("DB_DATABASE", "bibliotheque");
+    define("DB_DATABASE", "bibliotheques");
     define("DB_CHARSET", "utf8");
 ?>

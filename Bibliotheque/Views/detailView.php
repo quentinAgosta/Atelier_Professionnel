@@ -23,9 +23,10 @@
             <h3>Article detaillé</h3>
             <hr/>
             <input type="hidden" name="id" value="<?php echo $data["livre"]->id_livre ?>" />
-            Nom: <input type="text" name="nom" value="<?php echo $data["livre"]->nom_livre ?>" class="form-control" />
-            Nombre de pages: <input type="text" name="pages" value="<?php echo $data["livre"]->nombre_pages ?>" class="form-control" />
-            Auteur: <input type="text" name="auteur" value="<?php echo $data["livre"]->nom_auteur ?>" class="form-control" />
+            Nom : <input type="text" name="nom" value="<?php echo $data["livre"]->nom_livre ?>" class="form-control" />
+            Nombre de pages : <input type="text" name="pages" value="<?php echo $data["livre"]->nombre_pages ?>" class="form-control" />
+            Auteur : <input type="text" name="auteur" value="<?php echo $data["livre"]->nom_auteur ?>" class="form-control" />
+            Couverture : <input type="text" name="couverture_livre" value="<?php echo $data["livre"]->couverture ?>" class="form-control" />
             <input type="submit" value="Modifier" class="btn btn-info"/>
         </form>
         <form method="POST" action="index.php?controller=livres&action=supprimer" style="display:inline;">

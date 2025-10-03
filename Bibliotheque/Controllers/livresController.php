@@ -52,6 +52,7 @@ class LivresController{
         $Livre->setNom_livre($_POST["nom_livre"]);
         $Livre->setNombre_pages($_POST["nombre_pages"]);
         $Livre->setNom_auteur($_POST["nom_auteur"]);
+        $Livre->setCouverture($_POST["couverture"]);
         if($Livre->insert()){
             header('Location: index.php');
         }
@@ -63,6 +64,7 @@ class LivresController{
         $Livre->setNom_livre($_POST["nom"]);
         $Livre->setNombre_pages($_POST["pages"]);
         $Livre->setNom_auteur($_POST["auteur"]);
+        $Livre->setCouverture($_POST["couverture_livre"]);
         if($Livre->update()){
             header('Location: index.php');
         }

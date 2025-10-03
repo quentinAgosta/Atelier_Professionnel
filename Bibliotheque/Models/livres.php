@@ -8,6 +8,7 @@ class Livres{
     private $nom_livre;
     private $nombre_pages;
     private $nom_auteur;
+    private $couverture;
 
     public function __construct($connexion){
         $this->connexion = $connexion;
@@ -29,6 +30,10 @@ class Livres{
         return $this->nom_auteur;
     }
 
+    public function getCouverture(){
+        return $this->couverture;
+    }
+
     public function setId_livre($id){
         $this->id_livre = $id;
     }
@@ -45,9 +50,13 @@ class Livres{
         $this->nom_auteur = $auteur;
     }
 
+    public function setCouverture($couverture_livre){
+        $this->couverture = $couverture_livre;
+    }
+
     public function getAll(){
-        $query = $this->connexion->prepare("SELECT id_livre, nom_livre, nombre_pages, nom_auteur FROM "
-        .$this->table);
+        $query = $this->connexion->prepare("SELECT id_livre, nom_livre, nombre_pages, nom_auteur, couverture 
+        FROM ".$this->table);
         $query->execute();
         $result = $query->fetchAll();
         $this->connexion = null;
@@ -55,8 +64,8 @@ class Livres{
     }
 
     public function getById($id){
-        $query = $this->connexion->prepare("SELECT id_livre, nom_livre, nombre_pages, nom_auteur FROM "
-        .$this->table." WHERE id_livre =:id");
+        $query = $this->connexion->prepare("SELECT id_livre, nom_livre, nombre_pages, nom_auteur, couverture 
+        FROM ".$this->table." WHERE id_livre =:id");
         $query->execute(array("id"=>$id));
         $result = $query->fetchObject();
         $this->connexion = null;
@@ -64,13 +73,14 @@ class Livres{
     }
 
     public function insert(){
-        $query = $this->connexion->prepare("INSERT INTO ".$this->table." (nom_livre, nombre_pages, nom_auteur) 
-        VALUES (:nom, :pages, :auteur)");
+        $query = $this->connexion->prepare("INSERT INTO ".$this->table." (nom_livre, nombre_pages, nom_auteur, 
+        couverture) VALUES (:nom, :pages, :auteur, :couverture_livre)");
 
         $result = $query->execute(array(
             "nom" => $this->nom_livre,
             "pages" => $this->nombre_pages,
-            "auteur" => $this->nom_auteur
+            "auteur" => $this->nom_auteur,
+            "couverture_livre" => $this->couverture
         ));
         $this->connexion = null;
         return $result;
@@ -78,13 +88,14 @@ class Livres{
 
     public function update(){
         $query = $this->connexion->prepare("UPDATE ".$this->table." SET nom_livre =:nom, nombre_pages =:pages, 
-        nom_auteur =:auteur WHERE id_livre =:id");
+        nom_auteur =:auteur, couverture =:couverture_livre WHERE id_livre =:id");
 
         $result = $query->execute(array(
             "id" => $this->id_livre,
             "nom" => $this->nom_livre,
             "pages" => $this->nombre_pages,
-            "auteur" => $this->nom_auteur
+            "auteur" => $this->nom_auteur,
+            "couverture" => $this->couverture
         ));
         $this->connexion = null;
         return $result;
